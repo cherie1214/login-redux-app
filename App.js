@@ -1,12 +1,25 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
+
+// import SwitchNavi from './navigation';
+
+// Redux
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import reducers from './reducers';
+import thunk from 'redux-thunk';
+
+import Home from './components/Home';
+
+const store = createStore(reducers, applyMiddleware(thunk));
+
 
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Login with Redux!</Text>
-      </View>
+      <Provider store={store}>
+        <Home/>
+      </Provider>
     );
   }
 }
